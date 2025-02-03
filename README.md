@@ -69,14 +69,14 @@ For instructions on how to build checker docker image see [Build](#build)
 docker run -e TARGET_URL=https://example.com k8s-connectivity-checker
 ```
 
-#### Build image and push to registry
+#### Build image and push to GHCR.io registry
 
 For instructions on how to build checker docker image see [Build](#build)
 
 Image has to be available for the Kubernetes cluster => push to a OCI registry:
 
 ```bash
-docker push <registry_url>/k8s-connectivity-checker:latest
+docker push ghcr.io/gr8it/k8s-connectivity-checker:latest
 ```
 
 ### Kubernetes cluster
@@ -84,7 +84,7 @@ docker push <registry_url>/k8s-connectivity-checker:latest
 Create a deployment:
 
 ```bash
-kubectl create deployment listener --image="<registry-url>/k8s-connectivity-checker" -n "<namespace>"
+kubectl create deployment listener --image="ghcr.io/gr8it/k8s-connectivity-checker:latest" -n "<namespace>"
 kubectl patch deployment listener -n "<namespace>" -p "{\"spec\": {\"template\": {\"spec\": {\"imagePullSecrets\": [{\"name\": \"<secret-with-docker-credentials>\"}], \"containers\": [{\"name\": \"k8s-connectivity-checker\", \"env\": [{\"name\": \"TARGET_URL\", \"value\": \"http://listener:8080/status\"}]}]}}}}"
 ```
 
