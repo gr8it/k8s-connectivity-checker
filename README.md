@@ -91,4 +91,4 @@ kubectl patch deployment listener -n "<namespace>" -p "{\"spec\": {\"template\":
 ## TODO
 
 - supply k8s manifests
-- provisioning / visualisation dashboard
+- build image automatically using github action / workflow <https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#pushing-container-images>
